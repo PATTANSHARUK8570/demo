@@ -1,0 +1,39 @@
+
+
+CREATE COMPUTE MODULE sampleMsgFlow9_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		SET Environment.channel_res[]=PASSTHRU('select channelRes from dblogtab where appname=?','warrantees');
+		
+		DECLARE i INTEGER 1;
+		DECLARE j INTEGER;
+		SET j= CARDINALITY(Environment.channel_res[]);
+		DECLARE csv_record CHARACTER '';
+		
+		CREATE FIELD OutputRoot.DFDL.sampleMsg;
+		DECLARE outref REFERENCE TO OutputRoot.DFDL.sampleMsg;
+		
+		WHILE (i<=j) DO
+			
+			SET csv_record=Environment.channel_res[i].CHANNELRES;
+			DECLARE blob_data blob;
+			SET blob_data=CAST(csv_record AS BLOB CCSID 1208 ENCODING 546);
+				
+			CREATE LASTCHILD OF Environment DOMAIN 'DFDL' PARSE(blob_data 
+          		OPTIONS FolderBitStream 
+          		SET 'sampleDFDLSchemaFile' 
+         		TYPE 'sampleMsg' 
+          		FORMAT 'CSVFormat' 
+          		CCSID 1208 
+          		ENCODING 546);
+          
+          	SET outref.record[i]=Environment.DFDL.sampleMsg.record;
+          	SET Environment.[<]=null;
+			SET i=i+1;
+			
+		END WHILE;
+
+		RETURN TRUE;
+	END;
+END MODULE;
