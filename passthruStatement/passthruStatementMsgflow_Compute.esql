@@ -1,0 +1,10 @@
+
+
+CREATE COMPUTE MODULE passthruStatementMsgflow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		PASSTHRU 'create table def( id int, name varchar2(50),location varchar2(60))' to Database.fin;
+		RETURN TRUE;
+	END;
+END MODULE;
