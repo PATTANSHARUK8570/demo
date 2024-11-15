@@ -1,0 +1,18 @@
+
+
+CREATE COMPUTE MODULE backendMsgFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		CREATE FIELD OutputRoot.JSON.Data.student;
+		DECLARE outref REFERENCE TO OutputRoot.JSON.Data.student;
+		SET outref.id=98;
+		SET outref.name='sharuk';
+		SET outref.location='gudur';
+		
+		THROW USER EXCEPTION values('hey man');
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;
