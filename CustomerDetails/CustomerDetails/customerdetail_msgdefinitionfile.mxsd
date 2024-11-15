@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="getCustomerRequest">
+    <xsd:sequence>
+      <xsd:element ref="CustId"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getCustomerResponse">
+    <xsd:sequence>
+      <xsd:element ref="CustId"/>
+      <xsd:element ref="CustEmail"/>
+      <xsd:element ref="CustName"/>
+      <xsd:element ref="CustTel"/>
+      <xsd:element ref="CustType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="addCustomerRequest">
+    <xsd:sequence>
+      <xsd:element ref="CustEmail"/>
+      <xsd:element ref="CustId"/>
+      <xsd:element ref="CustName"/>
+      <xsd:element ref="CustTel"/>
+      <xsd:element ref="CustType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="addCustomerResponse">
+    <xsd:sequence>
+      <xsd:element ref="Message"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="fault">
+    <xsd:sequence>
+      <xsd:element ref="Fcode"/>
+      <xsd:element ref="FString"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CustId" type="xsd:int"/>
+  <xsd:element name="CustName" type="xsd:string"/>
+  <xsd:element name="CustType" type="xsd:string"/>
+  <xsd:element name="CustEmail" type="xsd:string"/>
+  <xsd:element name="CustTel" type="xsd:int"/>
+  <xsd:element name="Message" type="xsd:string"/>
+  <xsd:element name="Fcode" type="xsd:string"/>
+  <xsd:element name="FString" type="xsd:string"/>
+  <xsd:element name="getCustomerRequest" type="getCustomerRequest">
+    <xsd:annotation>
+      <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/getCustomerRequest;XSDElementDeclaration=8$MRObject"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="getCustomerResponse" type="getCustomerResponse">
+    <xsd:annotation>
+      <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/getCustomerResponse;XSDElementDeclaration=9$MRObject"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="addCustomerRequest" type="addCustomerRequest">
+    <xsd:annotation>
+      <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/addCustomerRequest;XSDElementDeclaration=10$MRObject"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="addCustomerResponse" type="addCustomerResponse">
+    <xsd:annotation>
+      <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/addCustomerResponse;XSDElementDeclaration=11$MRObject"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="fault" type="fault">
+    <xsd:annotation>
+      <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/fault;XSDElementDeclaration=12$MRObject"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>
