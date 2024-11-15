@@ -1,0 +1,27 @@
+
+
+CREATE COMPUTE MODULE taheerMsgFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		--DECLARE noOfChilds INTEGER;
+		--SET noOfChilds=CARDINALITY(InputRoot.JSON.Data.employee.[]);
+		
+--		DECLARE noOfChilds INTEGER 0;
+--		DECLARE inref REFERENCE TO InputRoot.JSON.Data.employee.[>];
+--		
+--		WHILE LASTMOVE(inref) DO
+--			
+--			
+--			SET noOfChilds=noOfChilds+1;
+--			MOVE inref NEXTSIBLING;
+--		END WHILE;
+
+		DECLARE inref REFERENCE TO InputRoot.XMLNSC.student;
+		DECLARE id INTEGER inref.id;
+		
+		PASSTHRU('insert into abc values(?,?,?)',id,inref.name,inref.location,'iib');
+		
+		RETURN TRUE;
+	END;
+END MODULE;
